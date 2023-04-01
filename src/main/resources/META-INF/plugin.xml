@@ -1,0 +1,43 @@
+<!-- Plugin Configuration File. Read more: https://plugins.jetbrains.com/docs/intellij/plugin-configuration-file.html -->
+<idea-plugin>
+    <!-- Unique identifier of the plugin. It should be FQN. It cannot be changed between the plugin versions. -->
+    <id>com.navercorp.plasma.HowHugeIsTheMethod</id>
+
+    <!-- Public plugin name should be written in Title Case.
+         Guidelines: https://plugins.jetbrains.com/docs/marketplace/plugin-overview-page.html#plugin-name -->
+    <name>HowHugeIsTheMethod</name>
+
+    <!-- A displayed Vendor name or Organization ID displayed on the Plugins Page. -->
+    <vendor email="chanwool.jo@navercorp.com" url="https://www.navercorp.com">Naver Corp.</vendor>
+
+    <!-- Description of the plugin displayed on the Plugin Page and IDE Plugin Manager.
+         Simple HTML elements (text formatting, paragraphs, and lists) can be added inside of <![CDATA[ ]]> tag.
+         Guidelines: https://plugins.jetbrains.com/docs/marketplace/plugin-overview-page.html#plugin-description -->
+    <description><![CDATA[
+        특정 클래스/메소드의 호출트리를 분석하여 Statement 수를 계산하여 보여주는 플러그인입니다.
+        메소드 이름 혹은 클래스 이름 위에서 오른쪽 클릭 후 "How Huge Is The Method?" 버튼을 클릭하면 동작합니다.
+  ]]></description>
+
+    <!-- Product and plugin compatibility requirements.
+         Read more: https://plugins.jetbrains.com/docs/intellij/plugin-compatibility.html -->
+    <depends>com.intellij.modules.platform</depends>
+    <depends>com.intellij.modules.java</depends>
+
+    <!-- Extension points defined by the plugin.
+         Read more: https://plugins.jetbrains.com/docs/intellij/plugin-extension-points.html -->
+    <extensions defaultExtensionNs="com.intellij">
+        <toolWindow
+                factoryClass="com.navercorp.plasma.howhugeisthemethod.factory.NavigatorToolWindowFactory"
+                id="NavigatorWindow"
+                anchor="bottom"
+                canCloseContents="true"
+        />
+    </extensions>
+
+    <actions>
+        <action id="navigator" class="com.navercorp.plasma.howhugeisthemethod.NavigatorAction"
+                text="How Huge Is the Method?">
+            <add-to-group group-id="EditorPopupMenu" anchor="first"/>
+        </action>
+    </actions>
+</idea-plugin>
